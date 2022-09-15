@@ -1,0 +1,33 @@
+/*
+downloadpdf.php
+*/
+
+<?php
+	$file = $_GET['pdfpath'];
+	
+	        $key = realpath(dirname(__FILE__).'/../../../uploads');
+			
+			$filename = (realpath(dirname(__FILE__).'/../../../../'.$file));
+			
+			$name = basename($filename,'pdf');
+			
+        if ((strpos($filename, $key) == 0) && file_exists($filename)) {
+
+                header('Content-Description: File Transfer');
+                header("Content-type:application/pdf");
+                header('Content-Disposition: attachment; filename="'.$name.'pdf"');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+				header('Content-Transfer-Encoding: binary');
+				header('Content-Length: ' . filesize($filename));
+                readfile($filename);
+
+				echo filesize($filename);
+                exit;
+        }
+        else {
+                echo ' No files to download. <br>';
+        }
+
+?>
