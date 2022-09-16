@@ -86,7 +86,6 @@ add_shortcode( 'case-studies-list', 'ttbc_create_shortcode_case_studies_post_typ
 
 // shortcode code ends here - Case Studies
 function removeBasePath($url){
-	//$urlParts = parse_url($url);
-    return $urlParts['path'];
-	//return $url;
+	$urlParts = parse_url($url);
+    	return $urlParts['path'];
 }
